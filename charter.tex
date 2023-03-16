@@ -7,28 +7,28 @@ codirector, % Uncomment to add a codirector to the title page
 
 
 % El títulos de la memoria, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \ttitle
-\titulo{Título del proyecto} 
+\titulo{Pesaje al paso} 
 
 % Nombre del posgrado, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \degreename
-\posgrado{Carrera de Especialización en Sistemas Embebidos} 
+\posgrado{Carrera de Especialización en Inteligencia artificial} 
 %\posgrado{Carrera de Especialización en Internet de las Cosas} 
 %\posgrado{Carrera de Especialización en Intelegencia Artificial}
 %\posgrado{Maestría en Sistemas Embebidos} 
 %\posgrado{Maestría en Internet de las cosas}
 
 % Tu nombre, se puede usar el cualquier lugar del documento con el comando \authorname
-\autor{Nombre del Autor} 
+\autor{Ing. Esp. Jorge Cuenca} 
 
 % El nombre del director y co-director, se puede usar el cualquier lugar del documento con el comando \supname y \cosupname y \pertesupname y \pertecosupname
 \director{Nombre del Director}
-\pertenenciaDirector{pertenencia} 
+\pertenenciaDirector{FIUBA} 
 % FIXME:NO IMPLEMENTADO EL CODIRECTOR ni su pertenencia
-\codirector{John Doe} % para que aparezca en la portada se debe descomentar la opción codirector en el documentclass
+\codirector{Codirector} % para que aparezca en la portada se debe descomentar la opción codirector en el documentclass
 \pertenenciaCoDirector{FIUBA}
 
 % Nombre del cliente, quien va a aprobar los resultados del proyecto, se puede usar con el comando \clientename y \empclientename
-\cliente{Nombre del cliente}
-\empresaCliente{Empresa del cliente}
+\cliente{Ing. Guillermo}
+\empresaCliente{Emtech}
 
 % Nombre y pertenencia de los jurados, se pueden usar el cualquier lugar del documento con el comando \jurunoname, \jurdosname y \jurtresname y \perteunoname, \pertedosname y \pertetresname.
 \juradoUno{Nombre y Apellido (1)}
@@ -38,9 +38,9 @@ codirector, % Uncomment to add a codirector to the title page
 \juradoTres{Nombre y Apellido (3)}
 \pertenenciaJurTres{pertenencia (3)}
  
-\fechaINICIO{30 de abril de 2021}		%Fecha de inicio de la cursada de GdP \fechaInicioName
-\fechaFINALPlan{18 de junio de 2021} 	%Fecha de final de cursada de GdP
-\fechaFINALTrabajo{15 de mayo de 2022}	%Fecha de defensa pública del trabajo final
+\fechaINICIO{14 de marzo de 2023}		%Fecha de inicio de la cursada de GdP \fechaInicioName
+\fechaFINALPlan{18 de julio de 2023} 	%Fecha de final de cursada de GdP
+\fechaFINALTrabajo{15 de agosto de 2023}	%Fecha de defensa pública del trabajo final
 
 
 \begin{document}
@@ -92,7 +92,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en \textcolor{red}{la implementación de un prototipo de un sistema de control de temperatura de un calefón}, y tendrá un presupuesto preliminar estimado de \textcolor{red}{600} h de trabajo y \textcolor{red}{\$XXX}, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
+Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en {la implementación de un algoritmo para obtener un resultado válido de peso de un animal que está circulando sobre la plataforma de pesaje}, y tendrá un presupuesto preliminar estimado de {600} h de trabajo y \$500.000 colombianos, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -116,50 +116,61 @@ Se adjunta a esta acta la planificación inicial.
 \label{sec:descripcion}
 
 
-\begin{consigna}{red} % El bloque "consigna" se usa para poner texto en rojo y dar una pequeña ayuda sobre cómo completar la sección. En cada entrega parcial deben eliminar los comandos begin y end del bloque consigna de las secciones que hayan completado.
+ % El bloque "consigna" se usa para poner texto en rojo y dar una pequeña ayuda sobre cómo completar la sección. En cada entrega parcial deben eliminar los comandos begin y end del bloque consigna de las secciones que hayan completado.
 
-El objetivo es que el lector en una o dos páginas entienda de qué trata el proyecto y cuáles son sus desafíos, cuál es la motivación para realizarlo y su importancia.
+Análisis exploratorio de datos:
+Convertir los datos recolectados a un formato adecuado para su análisis, utilizando los datos adquiridos hasta el momento. Hacer una inspección de los datos rotulados para determinar la cantidad de muestras útiles para entrenamiento y evaluación. Sobre los datos útiles, se analizará la variedad de las etiquetas (ground-truth de los pesos) y la representatividad del espacio muestral que habría una vez desplegado en campo. Se sacarán algunas métricas estadísticas buscando sesgos y varianzas.
 
-Se debe introducir el contexto del proyecto, el estado del arte en la temática, describir la propuesta de valor, cúal es el problema que atiende y cuál es la solución que se propone. Se debe dar una descripción funcional de la solución que incluya un diagrama en bloques.
+Esto servirá para estimar el tipo de modelo para realizar la regresión y su capacidad.
 
-Puede ser útil incluir en esta sección la respuesta a alguna de estas preguntas:
+Especificación de nuevos datos a recolectar para ampliar el dataset:
+En función del estudio de la aplicación y de lo que se observe en el paso anterior y del o los modelos que se propongan, se debe realizar una especificación para la ampliación de las muestras. La especificación incluirá casos particulares de interés.
+
+Conformación del dataset de entrenamiento y evaluación:
+Definir un entorno de desarrollo para el modelo a entrenar. Construir el pipeline para la transformación de los datos crudos al dataset depurado, para entrenar y evaluar el modelo. Esto incluirá la etapa de pre-procesamiento destinada sólo a la limpieza de datos.
+
+Definición del pre-procesamiento a realizar a las muestras:
+Este pre-procesamiento es el que habría que implementar en el pipeline de inferencia (estimación del peso) por cada muestra que se quiera procesar. Este pre-procesamiento, a priori, se implementará como lo mínimo necesario que ayude a incrementar el desempeño del modelo. Tener en cuenta que es distinto al pre-procesamiento de limpieza mencionado en el punto anterior.
+Contempla el modelado del pre-procesamiento, no su implementación en la
+plataforma.
+
+Modelos:
+Se implementarán y evaluarán al menos dos modelos, uno de mayor capacidad (para estimación off-line) que demuestre la viabilidad de la estimación, y otro de menor capacidad en función de las capacidades de cómputo disponibles para la estimación en tiempo real (que degrade el desempeño de manera tolerable).
+
+Cuantización de un modelo para despliegue sobre la plataforma:
+Este punto aplicaría si se implementará el modelo en una plataforma que no utilice punto flotante (procesadores de baja capacidad de cómputo o FPGAs), o bien que no soporte las librerías utilizadas en los modelos. Podría no ser necesario en una primera instancia de desarrollo.
+
+Despliegue:
+Si la plataforma no soporta las librerías usadas para ML, o bien no tiene una capacidad de cómputo medianamente aceptable (punto flotante, matricial), este paso puede demandar mucho trabajo.
+
+Análisis de resultados:
+Este análisis se refiere a la evaluación del desempeño una vez desplegado el modelo.Incluiría sugerencias para mejoras de desempeño, ya sea modificando y re-entrenando los modelos, como adquisiciones de nuevas muestras. Comparación de los datos obtenidos cotejados con pesos estáticos realizados en campo.
+
 
 \begin{itemize}
-	\item ¿Cuál es el contexto del proyecto, es un emprendimiento personal, un proyecto para una empresa, es parte del programa de vinculación con empresas del posgrado?
-	\item ¿Existen o aplican condiciones especiales al proyecto, financiamiento de algún programa público o privado, acuerdos de confidencialidad, acuerdos sobre la propiedad intelectual de los entregables u otros?
-	\item ¿Cómo se compara la solución propuesta con el estado del arte en el campo de aplicación? ¿En qué aspectos destaca?
-	\item ¿Ayuda a la explicación si se incluye un lienzo Canvas del Modelo de Negocio?
-	\item ¿En qué estado del ciclo de vida está la solución que se propone?
-	\item ¿Cuáles son las características del cliente (el adoptante de los entregables del proyecto) qué valora, qué necesita?
-	\item ¿Por dónde pasa la innovación?
+	\item Este proyecto es parte del programa de vinculación con empresas del posgrado, en este caso se tiene la oportunidad de trabajar con la empresa EMTECH.
+	
 \end{itemize}
 
-La descripción técnica-conceptual \textbf{debe incluir al menos un diagrama en bloques del sistema} y descripción funcional de la solución propuesta.
-
-Las figuras se deben mencionar en el texto ANTES de que aparezcan con una frase como la siguiente: ``En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se observa que...''.  La regla es que las figuras nunca pueden ir antes de ser mencionadas en el texto, porque sino el lector no entiende por qué de pronto aparece una figura.
+En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se observa el proceso general para llevar a cabo el desarrollo del proyecto.
 
 \begin{figure}[htpb]
 \centering 
-\includegraphics[width=.5\textwidth]{./Figuras/diagBloques.png}
+\includegraphics[width=.5\textwidth]{./Figuras/figura1.jpeg}
 \caption{Diagrama en bloques del sistema}
 \label{fig:diagBloques}
 \end{figure}
 
 \vspace{25px}
 
-El tamaño de la tipografía en TODAS las figuras debe ser adecuado para que NO pase lo que ocurre acá, donde el lector debe esforzarse para poder leer el texto. Los colores usados en el diagrama deben ser adecuados, tal que ayuden a comprender mejor el diagrama, preferentemente en la gama de colores pastel.
-\end{consigna}
+
 
 \section{2. Identificación y análisis de los interesados}
 \label{sec:interesados}
 
-\begin{consigna}{red} % este comando se debe borrar para la entrega, junto con la contraparte \end{consigna}{red} 
+% este comando se debe borrar para la entrega, junto con la contraparte \end{consigna}{red} 
  
-\textbf{Nota importante:} borrar esto y todas las consignas en color rojo antes de entregar este documento). Esto se hace eliminando el par de comandos que forman el bloque consigna, \verb!\begin{consigna}{red}! y \verb!\end{consigna}{red}! del código. 
- 
-Es inusual que una misma persona esté en más de un rol, incluso en proyectos chicos. Si se considera que una persona cumple dos o más roles, entonces solo dejarla en el rol más importante. 
 
-Por ejemplo, si una persona es Cliente pero también colabora u orienta, dejarla solo como Cliente. Si una persona es el Responsable, no debe ser colocado también como miembro del equipo.
 
 
 \begin{table}[ht]
@@ -169,75 +180,51 @@ Por ejemplo, si una persona es Cliente pero también colabora u orienta, dejarla
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
-Auspiciante   &                   &              	&        	\\ \hline
 Cliente       & \clientename      &\empclientename	&        	\\ \hline
-Impulsor      &                   &              	&        	\\ \hline
 Responsable   & \authorname       & FIUBA        	& Alumno 	\\ \hline
-Colaboradores &                   &              	&        	\\ \hline
-Orientador    & \supname	      & \pertesupname 	& Director Trabajo final \\ \hline
-Equipo        & miembro1 \newline 
-				miembro2          &              	&        	\\ \hline
-Opositores    &                   &              	&        	\\ \hline
-Usuario final &                   &              	&        	\\ \hline
+Orientador    &     -	      & \pertesupname 	& Director Trabajo final \\ \hline
 \end{tabularx}
 \end{table}
 
-El Director suele ser uno de los Orientadores.
 
-No dejar celdas vacías; si no hay nada que poner en una celda colocar un signo ``-''.
-
-No dejar filas vacías; si no hay nada que poner en una fila entonces eliminarla.
-
-Es deseable listar a continuación las principales características de cada interesado.
- 
-Por ejemplo:
-\begin{itemize}
-	\item Auspiciante: es riguroso y exigente con la rendición de gastos. Tener mucho cuidado con esto.
-	\item Equipo: Juan Perez, suele pedir licencia porque tiene un familiar con una enfermedad. Planificar considerando esto.
-	\item Orientador: María Gómez va a poder ayudar mucho con la definición de los requerimientos.
-\end{itemize}
-
-\end{consigna} % este comando se debe borrar para la entrega, junto con la contraparte \begin{consigna}{red}
+ % este comando se debe borrar para la entrega, junto con la contraparte \begin{consigna}{red}
 
 
 
 \section{3. Propósito del proyecto}
 \label{sec:proposito}
 
-\begin{consigna}{red}
-¿Por qué se hace el proyecto? ¿Qué se quiere lograr? 
 
-Se recomienda que sea solo un párrafo que empiece diciendo ``El propósito de este proyecto es...''.
-\end{consigna}
+El propósito de este proyecto es crear un algoritmo que sea capaz de obtener un resultado válido de peso de un animal que está circulando sobre la plataforma de pesaje. Dependiendo del resultado
+del algoritmo se utilizará este valor de peso para ajustes de raciones, análisis de sanidad, etc.
+
 
 \section{4. Alcance del proyecto}
 \label{sec:alcance}
 
-\begin{consigna}{red}
-¿Qué se incluye y que no se incluye en este proyecto?
 
-Se refiere al trabajo a hacer para entregar el producto o resultado especificado. 
+El alcance del proyecto consiste en llevar a cabo un análisis exploratorio de datos con el objetivo de estimar el tipo de modelo para realizar la regresión y su capacidad. En primer lugar, se llevará a cabo la conversión de los datos recolectados a un formato adecuado para su análisis, seguido de una inspección de los datos rotulados para determinar la cantidad de muestras útiles para entrenamiento y evaluación. A continuación, se analizará la variedad de las etiquetas (ground-truth de los pesos) y la representatividad del espacio muestral que habría una vez desplegado en campo, extrayendo algunas métricas estadísticas para buscar sesgos y varianzas.
 
-Explicitar todo lo quede comprendido dentro del alcance del proyecto.
+Posteriormente, se especificarán nuevos datos a recolectar para ampliar el dataset, en función del estudio de la aplicación y de lo que se observe en el paso anterior y del o los modelos que se propongan, incluyendo casos particulares de interés. Se definirá un entorno de desarrollo para el modelo a entrenar y se construirá el pipeline para la transformación de los datos crudos al dataset depurado para entrenar y evaluar el modelo. Esto incluirá la etapa de pre-procesamiento destinada sólo a la limpieza de datos.
 
-Explicitar además todo lo que no quede incluido (``El presente proyecto no incluye...'')
+Se definirá el pre-procesamiento a realizar a las muestras, el cual se implementará en el pipeline de inferencia por cada muestra que se quiera procesar. Este pre-procesamiento, a priori, se implementará como lo mínimo necesario que ayude a incrementar el desempeño del modelo, contemplando el modelado del pre-procesamiento, no su implementación en la plataforma.
 
-\end{consigna}
+Se implementarán y evaluarán al menos dos modelos, uno de mayor capacidad (para estimación off-line) que demuestre la viabilidad de la estimación, y otro de menor capacidad en función de las capacidades de cómputo disponibles para la estimación en tiempo real (que degrade el desempeño de manera tolerable). Además, se llevará a cabo la cuantización de un modelo para despliegue sobre la plataforma, si es necesario.
 
+Finalmente, se realizará el despliegue del modelo y se llevará a cabo el análisis de resultados, evaluando el desempeño una vez desplegado el modelo e incluyendo sugerencias para mejoras de desempeño, ya sea modificando y re-entrenando los modelos, como adquisiciones de nuevas muestras. También se realizará una comparación de los datos obtenidos cotejados con pesos estáticos realizados en campo.
 
 \section{5. Supuestos del proyecto}
 \label{sec:supuestos}
 
-\begin{consigna}{red}
-``Para el desarrollo del presente proyecto se supone que: ...''
+Para el desarrollo del presente proyecto se supone que:
 
 \begin{itemize}
-	\item Supuesto 1
-	\item Supuesto 2...
+	\item El algoritmo proporciona mediciones precisas y consistentes del peso de los animales, independientemente del tamaño, raza o especie del animal
+	\item  El algoritmo es capaz de detectar y corregir errores y factores de confusión, como la influencia del viento o el movimiento de la plataforma de pesaje, para proporcionar mediciones precisas y confiables del peso de los animales.
+	\item  El algoritmo es capaz de proporcionar mediciones de peso en tiempo real y en un formato legible para su uso en ajustes de raciones alimenticias y análisis de sanidad de los animales.
 \end{itemize}
 
-Por ejemplo, se podrían incluir supuestos respecto a disponibilidad de tiempo y recursos humanos y materiales, sobre la factibilidad técnica de distintos aspectos del proyecto, sobre otras cuestiones que sean necesarias para el éxito del proyecto como condiciones macroeconómicas o reglamentarias.
-\end{consigna}
+
 
 \section{6. Requerimientos}
 \label{sec:requerimientos}
