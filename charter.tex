@@ -69,7 +69,7 @@ codirector, % Uncomment to add a codirector to the title page
 \rowcolor[HTML]{C0C0C0} 
 Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios realizados} & Fecha      \\ \hline
 0      & Creación del documento                                 &\fechaInicioName \\ \hline
-%1      & Se completa hasta el punto 4 inclusive                 & dd/mm/aaaa \\ \hline
+1      & Desarrollo hasta la sección 9                & 19 de marzo de 2023\\ \hline
 %2      & Se completa hasta el punto 7 inclusive
 %		  Se puede agregar algo más \newline
 %		  En distintas líneas \newline
@@ -229,105 +229,141 @@ Para el desarrollo del presente proyecto se supone que:
 \section{6. Requerimientos}
 \label{sec:requerimientos}
 
-\begin{consigna}{red}
-Los requerimientos deben numerarse y de ser posible estar agruparlos por afinidad, por ejemplo:
 
 \begin{enumerate}
 	\item Requerimientos funcionales
 		\begin{enumerate}
-			\item El sistema debe...
-			\item Tal componente debe...
-			\item El usuario debe poder...
+			\item Convertir los datos recolectados a un formato adecuado 					  para su análisis.
+			\item Inspeccionar los datos rotulados para determinar la 						cantidad de muestras útiles para entrenamiento y 							evaluación.
+			\item Analizar la variedad de las etiquetas (ground-truth de 					  los pesos) y la representatividad del espacio 								muestral.
+			\item Sacar algunas métricas estadísticas buscando sesgos y 						varianzas.
+			\item Especificar nuevos datos a recolectar para ampliar el 						dataset.
+			\item Definir un entorno de desarrollo para el modelo a 							entrenar.
+			\item Construir el pipeline para la transformación de los 							datos crudos al dataset depurado, para entrenar y 						evaluar el modelo.
+			\item Definir el pre-procesamiento a realizar a las muestras.
+			\item Implementar y evaluar al menos dos modelos.
+			\item Cuantizar un modelo para despliegue sobre la plataforma.
+			\item Desplegar el modelo en la plataforma.
+			\item Analizar los resultados obtenidos y sugerir mejoras.
 		\end{enumerate}
 	\item Requerimientos de documentación
 		\begin{enumerate}
-			\item Requerimiento 1
-			\item Requerimiento 2 (prioridad menor)
+			\item Documentar el proceso de conversión de los datos.
+			\item Documentar el proceso de inspección de los datos.
+			\item Documentar el proceso de análisis de las etiquetas y de 						las métricas estadísticas.
+			\item Documentar la especificación de nuevos datos a recolectar.
+			\item Documentar el entorno de desarrollo para el modelo a entrenar.
+			\item Documentar el pipeline para la transformación de los datos crudos al dataset depurado.
+			\item Documentar el pre-procesamiento a realizar a las muestras.
+			\item Documentar los modelos implementados y evaluados.
+			\item Documentar la cuantización del modelo.
+			\item Documentar el despliegue del modelo en la plataforma.
+			\item Documentar el análisis de resultados y las sugerencias de mejora.
 		\end{enumerate}
-	\item Requerimiento de testing...
-	\item Requerimientos de la interfaz...
-	\item Requerimientos interoperabilidad...
-	\item etc...
+	\item Requerimiento de testing
+		\begin{enumerate}
+			\item Realizar pruebas para garantizar la calidad del dataset depurado. 
+			\item Realizar pruebas para garantizar la calidad del pre-procesamiento. 
+			\item Realizar pruebas para garantizar la calidad de los modelos implementados.
+		\end{enumerate}
+	\item Requerimientos interoperabilidad
+			\begin{enumerate}
+			\item Asegurarse de que el modelo sea compatible con la plataforma donde será desplegado.
+			\item Asegurarse de que el modelo cuantizado sea compatible con la plataforma donde será desplegado.
+		\end{enumerate}
 \end{enumerate}
 
-Leyendo los requerimientos se debe poder interpretar cómo será el proyecto y su funcionalidad.
 
-Indicar claramente cuál es la prioridad entre los distintos requerimientos y si hay requerimientos opcionales. 
 
-No olvidarse de que los requerimientos incluyen a las regulaciones y normas vigentes!!!
-
-Y al escribirlos seguir las siguientes reglas:
-\begin{itemize}
-	\item Ser breve y conciso (nadie lee cosas largas). 
-	\item Ser específico: no dejar lugar a confusiones.
-	\item Expresar los requerimientos en términos que sean cuantificables y medibles.
-\end{itemize}
-
-\end{consigna}
 
 \section{7. Historias de usuarios (\textit{Product backlog})}
 \label{sec:backlog}
+\begin{enumerate}
+\item Como analista de datos, quiero poder importar archivos CSV para convertirlos a un formato adecuado para su análisis, para poder utilizar los datos adquiridos hasta el momento. Ponderación: 3 story points.
 
-\begin{consigna}{red}
-Descripción: En esta sección se deben incluir las historias de usuarios y su ponderación (\textit{history points}). Recordar que las historias de usuarios son descripciones cortas y simples de una característica contada desde la perspectiva de la persona que desea la nueva capacidad, generalmente un usuario o cliente del sistema. La ponderación es un número entero que representa el tamaño de la historia comparada con otras historias de similar tipo.
+Criterio de ponderación: La tarea de importar archivos CSV es una tarea relativamente simple, pero requiere cierta cantidad de trabajo y tiempo. Por lo tanto, la historia se califica con un número moderado de story points.
 
-El formato propuesto es: "como [rol] quiero [tal cosa] para [tal otra cosa]."
+\item Como usuario final, quiero poder ver un resumen estadístico de los datos, incluyendo métricas como la media, la desviación estándar y el rango, para poder tener una idea general de la distribución de los datos. Ponderación: 5 story points.
 
-Se debe indicar explícitamente el criterio para calcular los \textit{story points} de cada historia
-\end{consigna}
+Criterio de ponderación: La tarea de implementar un resumen estadístico de los datos implica algunas tareas más complejas, como la implementación de algoritmos de cálculo de estadísticas y la presentación de los resultados en un formato fácil de leer. Por lo tanto, la historia se califica con un número moderado-alto de story points.
+
+\item Como administrador del sistema, quiero poder agregar nuevas fuentes de datos al sistema para ampliar el conjunto de datos disponibles para el análisis, para poder mejorar la precisión de los modelos. Ponderación: 8 story points.
+
+Criterio de ponderación: La tarea de agregar nuevas fuentes de datos implica varias tareas complejas, como la integración de nuevos formatos de archivo y la validación de los datos para asegurarse de que sean adecuados para su uso en el sistema existente. Por lo tanto, la historia se califica con un número alto de story points.
+
+\item Como investigador científico, quiero poder realizar análisis de correlación para determinar si hay relaciones significativas entre las variables, para poder identificar patrones y tendencias en los datos. Ponderación: 13 story points.
+
+Criterio de ponderación: La tarea de implementar un análisis de correlación es un proceso más complejo que implica la implementación de un algoritmo de correlación y la presentación de los resultados en un formato útil para el usuario. Por lo tanto, la historia se califica con un número alto de story points.
+\end{enumerate}
 
 \section{8. Entregables principales del proyecto}
 \label{sec:entregables}
 
-\begin{consigna}{red}
 
-Los entregables del proyecto son (ejemplo):
+
+Los entregables del proyecto son:
 
 \begin{itemize}
-	\item Manual de uso
-	\item Diagrama de circuitos esquemáticos
-	\item Código fuente del firmware
-	\item Diagrama de instalación
-	\item Informe final
-	\item etc...
+	\item Informe de análisis exploratorio de datos: Este informe contendría los resultados de la exploración de los datos recolectados, incluyendo una descripción del formato adecuado para su análisis, el número de muestras útiles para entrenamiento y evaluación, la variedad de las etiquetas y la representatividad del espacio muestral.
+	\item Especificación de nuevos datos a recolectar: Este entregable incluiría una lista de casos particulares de interés para la ampliación de las muestras, basados en el estudio de la aplicación y lo que se observó en el análisis exploratorio de datos.
+	\item Dataset de entrenamiento y evaluación: Este entregable consistiría en el conjunto de datos depurados y listos para ser utilizados en el entrenamiento y evaluación de los modelos. Además, incluiría el pipeline de transformación de los datos crudos al dataset depurado.
+	\item Definición del pre-procesamiento a realizar a las muestras: Este entregable consistiría en la especificación del pre-procesamiento a realizar a cada muestra para incrementar el desempeño del modelo.
+	\item Implementación y evaluación de los modelos: Este entregable consistiría en la implementación y evaluación de al menos dos modelos, uno de mayor capacidad y otro de menor capacidad en función de las capacidades de cómputo disponibles. Se proporcionarían los resultados de la evaluación del desempeño de cada modelo.
+	\item Cuantización de un modelo para despliegue sobre la plataforma: Este entregable incluiría la cuantización de un modelo para ser desplegado en una plataforma que no utilice punto flotante o que no soporte las librerías utilizadas en los modelos.
+	\item Despliegue del modelo: Este entregable incluiría la implementación del modelo en la plataforma destinada para su uso y el informe de los resultados obtenidos en el despliegue.
+	\item Informe final: Este entregable sería un informe completo del proyecto, incluyendo una descripción detallada de cada uno de los entregables mencionados anteriormente, los resultados obtenidos y las recomendaciones para mejoras de desempeño, ya sea modificando y re-entrenando los modelos, como adquisiciones de nuevas muestras. Además, se incluiría una comparación de los datos obtenidos cotejados con pesos estáticos realizados en campo.
 \end{itemize}
-
-\end{consigna}
 
 \section{9. Desglose del trabajo en tareas}
 \label{sec:wbs}
 
-\begin{consigna}{red}
-El WBS debe tener relación directa o indirecta con los requerimientos.  Son todas las actividades que se harán en el proyecto para dar cumplimiento a los requerimientos. Se recomienda mostrar el WBS mediante una lista indexada:
 
 \begin{enumerate}
 \item Grupo de tareas 1
 	\begin{enumerate}
-	\item Tarea 1 (tantas h)
-	\item Tarea 2 (tantas hs)
-	\item Tarea 3 (tantas h)
+	\item Convertir los datos recolectados a un formato adecuado para su análisis. (tantas h)
+	\item Inspeccionar los datos rotulados para determinar la cantidad de muestras útiles para entrenamiento y evaluación. (tantas hs)
+	\item Analizar la variedad de las etiquetas y la representatividad del espacio muestral para estimar el tipo de modelo para realizar la regresión y su capacidad. (tantas h)
+	\item Especificar nuevos datos a recolectar para ampliar el dataset.
+	\item Definir un entorno de desarrollo para el modelo a entrenar.
+	\item Construir el pipeline para la transformación de los datos crudos al dataset depurado, para entrenar y evaluar el modelo.
+	\item Definir el pre-procesamiento a realizar a las muestras para incrementar el desempeño del modelo.
+	\item Implementar y evaluar al menos dos modelos, uno de mayor capacidad y otro de menor capacidad.
+	\item Cuantizar un modelo para despliegue sobre la plataforma
+	\item Desplegar el modelo en una plataforma que soporte las librerías utilizadas para ML y tenga una capacidad de cómputo medianamente aceptable.
+	\item Realizar el análisis de resultados y sugerir mejoras de desempeño, modificando y re-entrenando los modelos, o adquiriendo nuevas muestras.
+		
 	\end{enumerate}
 \item Grupo de tareas 2
 	\begin{enumerate}
-	\item Tarea 1 (tantas h)
-	\item Tarea 2 (tantas h)
-	\item Tarea 3 (tantas h)
+	\item Documentar el proceso de transformación de los datos crudos al dataset depurado, incluyendo los detalles de pre-procesamiento y limpieza de datos.
+	\item Documentar la especificación para la ampliación de las muestras.
+	\item Documentar la implementación de los modelos, incluyendo detalles sobre los hiperparámetros y la arquitectura utilizada.
+	\item Documentar la cuantización del modelo
+	\item Documentar el proceso de despliegue del modelo en la plataforma, incluyendo detalles sobre las librerías y capacidades de cómputo utilizadas.
+	\item Documentar los resultados obtenidos y las sugerencias para mejoras de desempeño.
 	\end{enumerate}
 \item Grupo de tareas 3
 	\begin{enumerate}
-	\item Tarea 1 (tantas h)
-	\item Tarea 2 (tantas h)
-	\item Tarea 3 (tantas h)
-	\item Tarea 4 (tantas h)
-	\item Tarea 5 (tantas h)
+	\item Realizar las pruebas necesarias para verificar que todo este funcionando.
+	\item Diseño de casos de prueba
+	\item Preparación del entorno de prueba
+	\item Ejecución de pruebas
+	\item Reporte de resultados
+	\item Corrección de errores
+	\item Investigación de requisitos de la plataforma
+	\item Análisis de compatibilidad del modelo
+	\item Ajustes necesarios para cumplir con los requisitos
+	\item Verificación de compatibilidad
+	\item Documentación de compatibilidad
+	
 	\end{enumerate}
 \end{enumerate}
 
 Cantidad total de horas: (tantas h)
 
-Se recomienda que no haya ninguna tarea que lleve más de 40 h. 
 
-\end{consigna}
+
 
 \section{10. Diagrama de Activity On Node}
 \label{sec:AoN}
