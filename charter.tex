@@ -92,7 +92,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en {la implementación de un algoritmo para obtener un resultado válido de peso de un animal que está circulando sobre la plataforma de pesaje}, y tendrá un presupuesto preliminar estimado de {600} h de trabajo y \$500.000 colombianos, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
+Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en {la implementación de un algoritmo para obtener un resultado válido de peso de un animal que está circulando sobre la plataforma de pesaje}, y tendrá un presupuesto preliminar estimado de {600} h de trabajo y \$500.000 colombianos, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -117,6 +117,11 @@ Se adjunta a esta acta la planificación inicial.
 
 
  % El bloque "consigna" se usa para poner texto en rojo y dar una pequeña ayuda sobre cómo completar la sección. En cada entrega parcial deben eliminar los comandos begin y end del bloque consigna de las secciones que hayan completado.
+Se elabora el proyecto con la necesidad de obtener pesajes de animales al paso de manera certera, con el fin de poder hacer el tracking de peso de cada animal de manera remota y con esa información tomar decisiones sobre el rodeo, analizar si están bien alimentados, si deben cambiar de destino, si tienen enfermedades ya que no suben de peso o pierden peso, etc.
+Además esta balanza es parte de una plataforma en la cual se puede realimentar de la información brindada para ajustar el dosificador de alimentos en caso de que lo requiera.
+
+Se quiere lograr obtener de manera confiable el peso de los animales, utilizando un algoritmo entrenado con datos reales que pueda procesar los registros de las celdas de carga y obtener un peso con buena exactitud.
+Estos datos en el equipo final son enviados a una plataforma IoT que mediante una aplicación móvil brinda al usuario del sistema la información de peso de cada animal que transita por la balanza.
 
 Análisis exploratorio de datos:
 Convertir los datos recolectados a un formato adecuado para su análisis, utilizando los datos adquiridos hasta el momento. Hacer una inspección de los datos rotulados para determinar la cantidad de muestras útiles para entrenamiento y evaluación. Sobre los datos útiles, se analizará la variedad de las etiquetas (ground-truth de los pesos) y la representatividad del espacio muestral que habría una vez desplegado en campo. Se sacarán algunas métricas estadísticas buscando sesgos y varianzas.
@@ -156,7 +161,7 @@ En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistem
 
 \begin{figure}[htpb]
 \centering 
-\includegraphics[width=.5\textwidth]{./Figuras/figura1.jpeg}
+\includegraphics[width=.5\textwidth]{./Figuras/Figura1.png}
 \caption{Diagrama en bloques del sistema}
 \label{fig:diagBloques}
 \end{figure}
@@ -213,6 +218,10 @@ Se implementarán y evaluarán al menos dos modelos, uno de mayor capacidad (par
 
 Finalmente, se realizará el despliegue del modelo y se llevará a cabo el análisis de resultados, evaluando el desempeño una vez desplegado el modelo e incluyendo sugerencias para mejoras de desempeño, ya sea modificando y re-entrenando los modelos, como adquisiciones de nuevas muestras. También se realizará una comparación de los datos obtenidos cotejados con pesos estáticos realizados en campo.
 
+La implementación del modelo en la tarjeta de desarrollo no se hara en producción en el sitio de la balanza.
+
+Los datos en el equipo final no seran enviados a una plataforma IoT de EMTECH, que mediante una aplicación móvil brinda al usuario del sistema la información de peso de cada animal que transita por la balanza.
+
 \section{5. Supuestos del proyecto}
 \label{sec:supuestos}
 
@@ -222,6 +231,8 @@ Para el desarrollo del presente proyecto se supone que:
 	\item El algoritmo proporciona mediciones precisas y consistentes del peso de los animales, independientemente del tamaño, raza o especie del animal
 	\item  El algoritmo es capaz de detectar y corregir errores y factores de confusión, como la influencia del viento o el movimiento de la plataforma de pesaje, para proporcionar mediciones precisas y confiables del peso de los animales.
 	\item  El algoritmo es capaz de proporcionar mediciones de peso en tiempo real y en un formato legible para su uso en ajustes de raciones alimenticias y análisis de sanidad de los animales.
+	\item Los resultados de las mediciones de peso pueden ser utilizados para tomar decisiones sobre la salud y el bienestar de los animales, incluyendo su nutrición y tratamiento médico.
+	\item La cantidad y calidad de los datos recolectados tendrán un impacto significativo en la precisión y confiabilidad del modelo de regresión utilizado para estimar el peso de los animales.
 \end{itemize}
 
 
