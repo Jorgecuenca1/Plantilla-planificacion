@@ -70,6 +70,7 @@ codirector, % Uncomment to add a codirector to the title page
 Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios realizados} & Fecha      \\ \hline
 0      & Creación del documento                                 &\fechaInicioName \\ \hline
 1      & Desarrollo hasta la sección 9                & 19 de marzo de 2023\\ \hline
+2      & Desarrollo hasta la sección 12                & 27 de marzo de 2023\\ \hline
 %2      & Se completa hasta el punto 7 inclusive
 %		  Se puede agregar algo más \newline
 %		  En distintas líneas \newline
@@ -92,7 +93,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en {la implementación de un algoritmo para obtener un resultado válido de peso de un animal que está circulando sobre la plataforma de pesaje}, y tendrá un presupuesto preliminar estimado de {600} h de trabajo y \$500.000 colombianos, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
+Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en {la implementación de un algoritmo para obtener un resultado válido de peso de un animal que está circulando sobre la plataforma de pesaje}, y tendrá un presupuesto preliminar estimado de {477} h de trabajo y \$7.200.000 colombianos, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -244,18 +245,18 @@ Para el desarrollo del presente proyecto se supone que:
 \begin{enumerate}
 	\item Requerimientos funcionales
 		\begin{enumerate}
-			\item Convertir los datos recolectados a un formato adecuado 					  para su análisis.
-			\item Inspeccionar los datos rotulados para determinar la 						cantidad de muestras útiles para entrenamiento y 							evaluación.
+			\item El sistema debe convertir los datos recolectados a un formato adecuado 					  para su análisis.
+			\item El sistema debe inspeccionar los datos rotulados para determinar la 						cantidad de muestras útiles para entrenamiento y 							evaluación.
 			\item Analizar la variedad de las etiquetas (ground-truth de 					  los pesos) y la representatividad del espacio 								muestral.
-			\item Sacar algunas métricas estadísticas buscando sesgos y 						varianzas.
+			\item El sistema debe sacar algunas métricas estadísticas buscando sesgos y varianzas.
 			\item Especificar nuevos datos a recolectar para ampliar el 						dataset.
 			\item Definir un entorno de desarrollo para el modelo a 							entrenar.
-			\item Construir el pipeline para la transformación de los 							datos crudos al dataset depurado, para entrenar y 						evaluar el modelo.
+			\item El sistema debe tener construido el pipeline para la transformación de los datos crudos al dataset depurado, para entrenar y evaluar el modelo.
 			\item Definir el pre-procesamiento a realizar a las muestras.
 			\item Implementar y evaluar al menos dos modelos.
-			\item Cuantizar un modelo para despliegue sobre la plataforma.
-			\item Desplegar el modelo en la plataforma.
-			\item Analizar los resultados obtenidos y sugerir mejoras.
+			\item El sistema debe tener cuantizado un modelo para despliegue sobre la plataforma.
+			\item El sistema debe tener un modelo en la plataforma.
+			\item El sistema debe analizar los resultados obtenidos y sugerir mejoras.
 		\end{enumerate}
 	\item Requerimientos de documentación
 		\begin{enumerate}
@@ -282,6 +283,12 @@ Para el desarrollo del presente proyecto se supone que:
 			\item Asegurarse de que el modelo sea compatible con la plataforma donde será desplegado.
 			\item Asegurarse de que el modelo cuantizado sea compatible con la plataforma donde será desplegado.
 		\end{enumerate}
+		\item Requerimientos asociados a la especialización
+		\begin{enumerate}
+			\item Se debe realizar una memoria técnica.
+			\item Se debe realizar un informe de avance.
+			\item Se debe realizar  el trabajo final del proyecto.
+		\end{enumerate}
 \end{enumerate}
 
 
@@ -290,19 +297,21 @@ Para el desarrollo del presente proyecto se supone que:
 \section{7. Historias de usuarios (\textit{Product backlog})}
 \label{sec:backlog}
 \begin{enumerate}
-\item Como analista de datos, quiero poder importar archivos CSV para convertirlos a un formato adecuado para su análisis, para poder utilizar los datos adquiridos hasta el momento. Ponderación: 3 story points.
+\item El metodo de story points que se utilizo fue planing poker usando la serie de fibonacci(0, 1, 2, 3, 5, 8, 13, etc).
+
+\item Como analista de datos quiero poder importar archivos CSV para convertirlos a un formato adecuado para su análisis, para poder utilizar los datos adquiridos hasta el momento. Ponderación: 3 story points.
 
 Criterio de ponderación: La tarea de importar archivos CSV es una tarea relativamente simple, pero requiere cierta cantidad de trabajo y tiempo. Por lo tanto, la historia se califica con un número moderado de story points.
 
-\item Como usuario final, quiero poder ver un resumen estadístico de los datos, incluyendo métricas como la media, la desviación estándar y el rango, para poder tener una idea general de la distribución de los datos. Ponderación: 5 story points.
+\item Como usuario final quiero poder ver un resumen estadístico de los datos, incluyendo métricas como la media, la desviación estándar y el rango, para poder tener una idea general de la distribución de los datos. Ponderación: 5 story points.
 
 Criterio de ponderación: La tarea de implementar un resumen estadístico de los datos implica algunas tareas más complejas, como la implementación de algoritmos de cálculo de estadísticas y la presentación de los resultados en un formato fácil de leer. Por lo tanto, la historia se califica con un número moderado-alto de story points.
 
-\item Como administrador del sistema, quiero poder agregar nuevas fuentes de datos al sistema para ampliar el conjunto de datos disponibles para el análisis, para poder mejorar la precisión de los modelos. Ponderación: 8 story points.
+\item Como administrador del sistema quiero poder agregar nuevas fuentes de datos al sistema para ampliar el conjunto de datos disponibles para el análisis, para poder mejorar la precisión de los modelos. Ponderación: 8 story points.
 
 Criterio de ponderación: La tarea de agregar nuevas fuentes de datos implica varias tareas complejas, como la integración de nuevos formatos de archivo y la validación de los datos para asegurarse de que sean adecuados para su uso en el sistema existente. Por lo tanto, la historia se califica con un número alto de story points.
 
-\item Como investigador científico, quiero poder realizar análisis de correlación para determinar si hay relaciones significativas entre las variables, para poder identificar patrones y tendencias en los datos. Ponderación: 13 story points.
+\item Como investigador científico quiero poder realizar análisis de correlación para determinar si hay relaciones significativas entre las variables, para poder identificar patrones y tendencias en los datos. Ponderación: 13 story points.
 
 Criterio de ponderación: La tarea de implementar un análisis de correlación es un proceso más complejo que implica la implementación de un algoritmo de correlación y la presentación de los resultados en un formato útil para el usuario. Por lo tanto, la historia se califica con un número alto de story points.
 \end{enumerate}
@@ -319,10 +328,10 @@ Los entregables del proyecto son:
 	\item Especificación de nuevos datos a recolectar: Este entregable incluiría una lista de casos particulares de interés para la ampliación de las muestras, basados en el estudio de la aplicación y lo que se observó en el análisis exploratorio de datos.
 	\item Dataset de entrenamiento y evaluación: Este entregable consistiría en el conjunto de datos depurados y listos para ser utilizados en el entrenamiento y evaluación de los modelos. Además, incluiría el pipeline de transformación de los datos crudos al dataset depurado.
 	\item Definición del pre-procesamiento a realizar a las muestras: Este entregable consistiría en la especificación del pre-procesamiento a realizar a cada muestra para incrementar el desempeño del modelo.
-	\item Implementación y evaluación de los modelos: Este entregable consistiría en la implementación y evaluación de al menos dos modelos, uno de mayor capacidad y otro de menor capacidad en función de las capacidades de cómputo disponibles. Se proporcionarían los resultados de la evaluación del desempeño de cada modelo.
-	\item Cuantización de un modelo para despliegue sobre la plataforma: Este entregable incluiría la cuantización de un modelo para ser desplegado en una plataforma que no utilice punto flotante o que no soporte las librerías utilizadas en los modelos.
-	\item Despliegue del modelo: Este entregable incluiría la implementación del modelo en la plataforma destinada para su uso y el informe de los resultados obtenidos en el despliegue.
-	\item Informe final: Este entregable sería un informe completo del proyecto, incluyendo una descripción detallada de cada uno de los entregables mencionados anteriormente, los resultados obtenidos y las recomendaciones para mejoras de desempeño, ya sea modificando y re-entrenando los modelos, como adquisiciones de nuevas muestras. Además, se incluiría una comparación de los datos obtenidos cotejados con pesos estáticos realizados en campo.
+	\item Implementación y evaluación de los modelos: este entregable consistiría en la implementación y evaluación de al menos dos modelos, uno de mayor capacidad y otro de menor capacidad en función de las capacidades de cómputo disponibles. Se proporcionarían los resultados de la evaluación del desempeño de cada modelo.
+	\item Cuantización de un modelo para despliegue sobre la plataforma: este entregable incluiría la cuantización de un modelo para ser desplegado en una plataforma que no utilice punto flotante o que no soporte las librerías utilizadas en los modelos.
+	\item Despliegue del modelo: este entregable incluiría la implementación del modelo en la plataforma destinada para su uso y el informe de los resultados obtenidos en el despliegue.
+	\item Informe final: este entregable sería un informe completo del proyecto, incluyendo una descripción detallada de cada uno de los entregables mencionados anteriormente, los resultados obtenidos y las recomendaciones para mejoras de desempeño, ya sea modificando y re-entrenando los modelos, como adquisiciones de nuevas muestras. Además, se incluiría una comparación de los datos obtenidos cotejados con pesos estáticos realizados en campo.
 \end{itemize}
 
 \section{9. Desglose del trabajo en tareas}
@@ -330,64 +339,66 @@ Los entregables del proyecto son:
 
 
 \begin{enumerate}
-\item Grupo de tareas 1
+\item Creación e implementación del modelo
 	\begin{enumerate}
-	\item Convertir los datos recolectados a un formato adecuado para su análisis. (tantas h)
-	\item Inspeccionar los datos rotulados para determinar la cantidad de muestras útiles para entrenamiento y evaluación. (tantas hs)
-	\item Analizar la variedad de las etiquetas y la representatividad del espacio muestral para estimar el tipo de modelo para realizar la regresión y su capacidad. (tantas h)
-	\item Especificar nuevos datos a recolectar para ampliar el dataset.
-	\item Definir un entorno de desarrollo para el modelo a entrenar.
-	\item Construir el pipeline para la transformación de los datos crudos al dataset depurado, para entrenar y evaluar el modelo.
-	\item Definir el pre-procesamiento a realizar a las muestras para incrementar el desempeño del modelo.
-	\item Implementar y evaluar al menos dos modelos, uno de mayor capacidad y otro de menor capacidad.
-	\item Cuantizar un modelo para despliegue sobre la plataforma
-	\item Desplegar el modelo en una plataforma que soporte las librerías utilizadas para ML y tenga una capacidad de cómputo medianamente aceptable.
-	\item Realizar el análisis de resultados y sugerir mejoras de desempeño, modificando y re-entrenando los modelos, o adquiriendo nuevas muestras.
+	\item Convertir los datos recolectados a un formato adecuado para su análisis. (13 hs)
+	\item Inspeccionar los datos rotulados para determinar la cantidad de muestras útiles para entrenamiento y evaluación. (13 hs)
+	\item Analizar la variedad de las etiquetas y la representatividad del espacio muestral para estimar el tipo de modelo para realizar la regresión y su capacidad. (14 hs)
+	\item Especificar nuevos datos a recolectar para ampliar el dataset.(12 h)
+	\item Definir un entorno de desarrollo para el modelo a entrenar.(14 h)
+	\item Construir el pipeline para la transformación de los datos crudos al dataset depurado, para entrenar y evaluar el modelo.(16 h)
+	\item Definir el pre-procesamiento a realizar a las muestras para incrementar el desempeño del modelo.(15 h)
+	\item Implementar y evaluar al menos dos modelos, uno de mayor capacidad y otro de menor capacidad.(22 h)
+	\item Cuantizar un modelo para despliegue sobre la plataforma(14 h)
+	\item Desplegar el modelo en una plataforma que soporte las librerías utilizadas para ML y tenga una capacidad de cómputo medianamente aceptable.(30 h)
+	\item Realizar el análisis de resultados y sugerir mejoras de desempeño, modificando y re-entrenando los modelos, o adquiriendo nuevas muestras.(20 h)
 		
 	\end{enumerate}
-\item Grupo de tareas 2
+\item Documentación técnica
 	\begin{enumerate}
-	\item Documentar el proceso de transformación de los datos crudos al dataset depurado, incluyendo los detalles de pre-procesamiento y limpieza de datos.
-	\item Documentar la especificación para la ampliación de las muestras.
-	\item Documentar la implementación de los modelos, incluyendo detalles sobre los hiperparámetros y la arquitectura utilizada.
-	\item Documentar la cuantización del modelo
-	\item Documentar el proceso de despliegue del modelo en la plataforma, incluyendo detalles sobre las librerías y capacidades de cómputo utilizadas.
-	\item Documentar los resultados obtenidos y las sugerencias para mejoras de desempeño.
+	\item Documentar el proceso de transformación de los datos crudos al dataset depurado, incluyendo los detalles de pre-procesamiento y limpieza de datos.(14 h)
+	\item Documentar la especificación para la ampliación de las muestras.(14 h)
+	\item Documentar la implementación de los modelos, incluyendo detalles sobre los hiperparámetros y la arquitectura utilizada.(14 h)
+	\item Documentar la cuantización del modelo(14 h)
+	\item Documentar el proceso de despliegue del modelo en la plataforma, incluyendo detalles sobre las librerías y capacidades de cómputo utilizadas.(14 h)
+	\item Documentar los resultados obtenidos y las sugerencias para mejoras de desempeño.(14 h)
 	\end{enumerate}
-\item Grupo de tareas 3
+\item Pruebas
 	\begin{enumerate}
-	\item Realizar las pruebas necesarias para verificar que todo este funcionando.
-	\item Diseño de casos de prueba
-	\item Preparación del entorno de prueba
-	\item Ejecución de pruebas
-	\item Reporte de resultados
-	\item Corrección de errores
-	\item Investigación de requisitos de la plataforma
-	\item Análisis de compatibilidad del modelo
-	\item Ajustes necesarios para cumplir con los requisitos
-	\item Verificación de compatibilidad
-	\item Documentación de compatibilidad
+	\item Realizar las pruebas necesarias para verificar que todo este funcionando.(24 h)
+	\item Diseño de casos de prueba (14 h).
+	\item Preparación del entorno de prueba(11 h).
+	\item Ejecución de pruebas(15 h).
+	\item Reporte de resultados(14 h).
+	\item Corrección de errores(12 h).
 	
 	\end{enumerate}
+	\item Documentación asociada a la especialización
+		\begin{enumerate}
+			\item Elaboración de memoria técnica de trabajo final (40 h).
+			\item Realizar un informe de avance (40 h).
+			\item Realizar  el trabajo final del proyecto (40 h).
+		\end{enumerate}
 \end{enumerate}
 
-Cantidad total de horas: (tantas h)
+Cantidad total de horas: (477 h)
 
 
 
 
 \section{10. Diagrama de Activity On Node}
 \label{sec:AoN}
-
-\begin{consigna}{red}
-Armar el AoN a partir del WBS definido en la etapa anterior. 
-
-%La figura \ref{fig:AoN} fue elaborada con el paquete latex tikz y pueden consultar la siguiente referencia \textit{online}:
-
-%\url{https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ:_A_Tutorial_for_Beginners_(Part_3)\%E2\%80\%94Creating_Flowcharts}
-
-\end{consigna}
-
+	
+\begin{enumerate}
+	
+	\item Actividad A = Creación e implementación del modelo con duración de 183 h.
+	\item Actividad B = Documentación técnica con duración de 84 h.
+	\item Actividad C = Pruebas con duración de 90 h.
+	\item Actividad D = Documentación asociada a la especializacion con duración de 120 h.
+	
+	
+	\end{enumerate}
+	En la Figura 2 se presenta el diagrama de activity on node.
 \begin{figure}[htpb]
 \centering 
 \includegraphics[width=.8\textwidth]{./Figuras/AoN.png}
@@ -395,81 +406,54 @@ Armar el AoN a partir del WBS definido en la etapa anterior.
 \label{fig:AoN}
 \end{figure}
 
-Indicar claramente en qué unidades están expresados los tiempos.
-De ser necesario indicar los caminos semicríticos y analizar sus tiempos mediante un cuadro.
-Es recomendable usar colores y un cuadro indicativo describiendo qué representa cada color, como se muestra en el siguiente ejemplo:
+
+\begin{table}[ht]
+%\caption{Identificación de los interesados}
+%\label{tab:interesados}
+\begin{tabularx}{\linewidth}{@{}|l|X|X|l|@{}}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+Color           & Descripción\\ \hline
+\cellcolor{red!20}      & Actividades críticas o semicríticas    \\ \hline
+\cellcolor{green!20}  & Actividades no críticas	\\ \hline
+\cellcolor{blue!20}   &  Inicio y fin	   \\ \hline
+\end{tabularx}
+\end{table}
+
+
+
+
 
 
 
 \section{11. Diagrama de Gantt}
 \label{sec:gantt}
 
-\begin{consigna}{red}
-
-Existen muchos programas y recursos \textit{online} para hacer diagramas de Gantt, entre los cuales destacamos:
-
-\begin{itemize}
-\item Planner
-\item GanttProject
-\item Trello + \textit{plugins}. En el siguiente link hay un tutorial oficial: \\ \url{https://blog.trello.com/es/diagrama-de-gantt-de-un-proyecto}
-\item Creately, herramienta online colaborativa. \\\url{https://creately.com/diagram/example/ieb3p3ml/LaTeX}
-\item Se puede hacer en latex con el paquete \textit{pgfgantt}\\ \url{http://ctan.dcc.uchile.cl/graphics/pgf/contrib/pgfgantt/pgfgantt.pdf}
-\end{itemize}
-
-Pegar acá una captura de pantalla del diagrama de Gantt, cuidando que la letra sea suficientemente grande como para ser legible. 
-Si el diagrama queda demasiado ancho, se puede pegar primero la ``tabla'' del Gantt y luego pegar la parte del diagrama de barras del diagrama de Gantt.
-
-Configurar el software para que en la parte de la tabla muestre los códigos del EDT (WBS).\\
-Configurar el software para que al lado de cada barra muestre el nombre de cada tarea.\\
-Revisar que la fecha de finalización coincida con lo indicado en el Acta Constitutiva.
-
-En la figura \ref{fig:gantt}, se muestra un ejemplo de diagrama de Gantt realizado con el paquete de \textit{pgfgantt}. En la plantilla pueden ver el código que lo genera y usarlo de base para construir el propio.
-
-\begin{figure}[htbp]
-\begin{center}
-\begin{ganttchart}{1}{12}
-  \gantttitle{2020}{12} \\
-  \gantttitlelist{1,...,12}{1} \\
-  \ganttgroup{Group 1}{1}{7} \\
-  \ganttbar{Task 1}{1}{2} \\
-  \ganttlinkedbar{Task 2}{3}{7} \ganttnewline
-  \ganttmilestone{Milestone o hito}{7} \ganttnewline
-  \ganttbar{Final Task}{8}{12}
-  \ganttlink{elem2}{elem3}
-  \ganttlink{elem3}{elem4}
-\end{ganttchart}
-\end{center}
-\caption{Diagrama de Gantt de ejemplo}
-\label{fig:gantt}
+En la Figura 3 se presenta la tabla de Gantt, y en la Figura 4 se presenta su diagrama de Gantt rotado.
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=.99\linewidth]{./Figuras/tabla.png}
+\caption{Tabla del Gantt}
+\label{fig:diagGantt}
 \end{figure}
 
 
 \begin{landscape}
 \begin{figure}[htpb]
 \centering 
-\includegraphics[height=.85\textheight]{./Figuras/Gantt-2.png}
-\caption{Ejemplo de diagrama de Gantt rotado}
+\includegraphics[width=.90\linewidth]{./Figuras/Gantt-2.png}
+\caption{Diagrama de Gantt rotado}
 \label{fig:diagGantt}
 \end{figure}
 
 \end{landscape}
 
-\end{consigna}
+
 
 
 \section{12. Presupuesto detallado del proyecto}
 \label{sec:presupuesto}
 
-\begin{consigna}{red}
-Si el proyecto es complejo entonces separarlo en partes:
-\begin{itemize}
-	\item Un total global, indicando el subtotal acumulado por cada una de las áreas.
-	\item El desglose detallado del subtotal de cada una de las áreas.
-\end{itemize}
-
-IMPORTANTE: No olvidarse de considerar los COSTOS INDIRECTOS.
-
-\end{consigna}
 
 \begin{table}[htpb]
 \centering
@@ -482,24 +466,17 @@ Descripción &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
- &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} \\ \hline
- &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
+Tarjeta de desarrollo FPGA &
+  \multicolumn{1}{c|}{1} & 
+  \multicolumn{1}{c|}{500.000 (COP)} &
+  \multicolumn{1}{c|}{500.000 (COP)} \\ \hline
+Ingeniero de software&
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{6.000.000 (COP)} &
+  \multicolumn{1}{c|}{6.000.000 (COP)} \\ \hline
+
 \multicolumn{3}{|c|}{SUBTOTAL} &
-  \multicolumn{1}{c|}{} \\ \hline
+  \multicolumn{1}{c|}{6.500.000 (COP)} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 \multicolumn{4}{|c|}{\cellcolor[HTML]{C0C0C0}COSTOS INDIRECTOS} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
@@ -507,22 +484,23 @@ Descripción &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
+Alquiler computador FPGA &
+  \multicolumn{1}{c|}{1} & 
+  \multicolumn{1}{c|}{400.000 (COP)} &
+  \multicolumn{1}{c|}{400.000 (COP)} \\ \hline
+Luz&
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{100.000 (COP)} &
+  \multicolumn{1}{c|}{100.000 (COP)} \\ \hline
+Internet&
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{200.000 (COP)} &
+  \multicolumn{1}{c|}{200.000 (COP)} \\ \hline
 \multicolumn{3}{|c|}{SUBTOTAL} &
-  \multicolumn{1}{c|}{} \\ \hline
+  \multicolumn{1}{c|}{700.000 (COP)} \\ \hline
 \rowcolor[HTML]{C0C0C0}
 \multicolumn{3}{|c|}{TOTAL} &
+ \multicolumn{1}{c|}{7.200.000 (COP)} 
    \\ \hline
 \end{tabularx}%
 \end{table}
